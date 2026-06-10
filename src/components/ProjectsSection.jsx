@@ -4,6 +4,7 @@ import MCP from "../assets/images/projects/mcp-server.png";
 import MentorGuru from "../assets/images/projects/mentorguru.png";
 import Allogaz from "../assets/images/projects/allogazcm.png"
 import Badge from "./ui/badge";
+import Button from "./ui/button";
 
 const projects = [
   // {
@@ -41,14 +42,14 @@ const projects = [
 
 const ProjectsSection = () => {
   return (
-    <section id='projects' className='py-20 px-6 text-slate-800'>
+    <section id='projects' className='py-20 px-6 text-white'>
       <div className='max-w-6xl mx-auto text-center'>
         <Separator title='Recent Work' />
-        <div className='grid md:grid-cols-3 gap-8'>
+        <div className='grid md:grid-cols-3 gap-8 mt-12'>
           {projects.map((project, index) => (
             <div
               key={index}
-              className=' rounded-[2rem] backdrop-blur-lg bg-white/50 shadow-lg border border-white/20 hover:shadow-lg transition p-7 w-[100%] md:w-full '
+              className=' rounded-[2rem] backdrop-blur-lg  shadow-lg border border-white/20 hover:shadow-lg transition p-7 w-[100%] md:w-full '
             >
               <div className='rounded-[2rem]  h-1/2 overflow-hidden mb-4 '>
                 <a href={project.link} target='_blank'>
@@ -77,15 +78,11 @@ const ProjectsSection = () => {
         </div>
       </div>
 
-      <div className='flex justify-center mt-10'>
-        <a
-          href='https://github.com/Nebur23/'
-          target='_blank'
-          className='mt-8 px-6 py-2 bg-accent  text-white rounded-lg hover:bg-cta transition-colors'
-        >
-          More on GitHub
-        </a>
-      </div>
+           <div className='flex justify-center'>
+            <Button text="More on GitHub" style="mt-8" link="https://github.com/Nebur23/" />
+           </div>
+
+
     </section>
   );
 };

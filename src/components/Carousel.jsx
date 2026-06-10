@@ -31,10 +31,10 @@ const technologies = [
       <img src={Python} className='text-indigo-600 w-18 h-18 bg-background' />
     ),
   },
-  {
-    name: "Solidity",
-    icon: <img src={Solidity} className='text-indigo-600 w-22 h-22' />,
-  },
+  // {
+  //   name: "Solidity",
+  //   icon: <img src={Solidity} className='text-indigo-600 w-22 h-22' />,
+  // },
   {
     name: "PostgreSQL",
     icon: <img src={Postgres} className='text-indigo-600 w-18 h-18' />,
@@ -56,22 +56,22 @@ const technologies = [
     name: "FastAPI",
     icon: <img src={Fastapi} className='text-indigo-600 w-18 h-18' />,
   },
-  {
-    name: "Pandas",
-    icon: <img src={Pandas} className='text-indigo-600 w-18 h-18' />,
-  },
-  {
-    name: "Scikit-learn",
-    icon: <img src={Scikit} className='text-indigo-600 w-18 h-18' />,
-  },
-  {
-    name: "TensorFlow",
-    icon: <img src={Tensorflow} className='text-indigo-600 w-18 h-18' />,
-  },
-  {
-    name: "Hardhat",
-    icon: <img src={Hardhat} className='text-indigo-600 w-18 h-18' />,
-  },
+  // {
+  //   name: "Pandas",
+  //   icon: <img src={Pandas} className='text-indigo-600 w-18 h-18' />,
+  // },
+  // {
+  //   name: "Scikit-learn",
+  //   icon: <img src={Scikit} className='text-indigo-600 w-18 h-18' />,
+  // },
+  // {
+  //   name: "TensorFlow",
+  //   icon: <img src={Tensorflow} className='text-indigo-600 w-18 h-18' />,
+  // },
+  // {
+  //   name: "Hardhat",
+  //   icon: <img src={Hardhat} className='text-indigo-600 w-18 h-18' />,
+  // },
   {
     name: "WordPress",
     icon: <img src={Wordpress} className='text-indigo-600 w-18 h-18' />,
@@ -103,14 +103,14 @@ export default function TechCarousel() {
   return (
     <section id='experiences'>
       <div className='text-center'>
-        <Separator id='experiences' title='Technical Expertise' />
+        <Separator id='experiences' title='Tools and Technologies' />
 
         <div className='relative w-full max-w-6xl mx-auto overflow-hidden'>
           {/* Left fade overlay */}
-          <div className='absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[#f5f5f5] to-transparent z-10 pointer-events-none' />
+          <div className='absolute left-0 top-0 bottom-0 w-24  z-10 pointer-events-none' />
 
           {/* Right fade overlay */}
-          <div className='absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#f5f5f5] to-transparent z-10 pointer-events-none' />
+          <div className='absolute right-0 top-0 bottom-0 w-24  z-10 pointer-events-none' />
 
           {/* Scrolling container */}
           <div

@@ -9,7 +9,7 @@ import SkillsSection from "../../components/SkillsSection";
 
 const HomePage = () => {
   return (
-    <div className='bg-background text-text min-h-screen relative'>
+    <div className='bg-[#131313] text-text min-h-screen relative'>
       <Header />
       <Home />
       {/* <Hero /> */}
