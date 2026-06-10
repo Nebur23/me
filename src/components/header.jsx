@@ -164,7 +164,7 @@ const Header = () => {
           {/* Menu */}
           <div
             ref={menuRef}
-            className='fixed top-0 right-0 h-full w-full bg-[#262625] text-white font-monofett shadow-xl z-50 flex flex-col'
+            className='fixed top-0 right-0 h-full w-full bg-[#262625] text-white font-monofett  shadow-xl z-50 flex flex-col'
             style={{ transform: "translateX(100%)" }}
           >
             {/* Close Button */}
@@ -223,13 +223,8 @@ const Header = () => {
                 >
                   Blog
                 </a>
-                <a
-                  href='#'
-                  className='menu-item block text-4xl md:text-5xl font-medium  hover:text-cta transition-colors py-2'
-                  onClick={handleCloseMenu}
-                >
-                  Contact
-                </a>
+              
+                <Button style="font-sans" text="Contact" mail="rubenloic8@gmail.com" />
               </nav>
             </div>
           </div>
