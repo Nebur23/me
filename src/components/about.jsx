@@ -1,28 +1,27 @@
-import React from "react";
-import DecryptedText from "../assets/animation/DecryptedText";
+import Badge from "./ui/badge";
 
-const AboutSection = () => {
-  return (
-    <section
-      id='about'
-      className=' pb-6 scroll-mt-20 text-left mt-4.5 tracking-wide'
-    >
-      <div className='container mx-auto max-w-4xl text-center'>
-        {/* <h2 className='text-3xl md:text-4xl font-bold mb-6'>About Me</h2> */}
-        <DecryptedText
-          text=" I'm a passionate software engineer with a focus on building clean,
-          interactive, and efficient applications.I’ve been diving into AI to help small businesses make
-          smarter decisions."
-          speed={100}
-          maxIterations={20}
-          //          characters='ABCD1234!?'
-          className='revealed font-inter  text-lg text-slate-700 leading-3.5 italic'
-          parentClassName='all-letters max-w-2xl mx-auto text-center text-left'
-          encryptedClassName='encrypted'
-        />
+const skills = ["React", "TypeScript", "Next.js", "Node.js", "Python", "PostgreSQL", "Docker"];
+
+const AboutSection = () => (
+  <section className="about-section page-width" id="about">
+    <div className="about-copy">
+      <p className="eyebrow">A LITTLE ABOUT ME</p>
+      <h2>Curious by nature.<br /><span>Engineer by trade.</span></h2>
+      <p>
+        I enjoy taking ideas from rough sketches to reliable software. My work
+        spans frontend experiences, backend systems, and the infrastructure
+        that keeps them running — with a special interest in tools that make
+        everyday work a little easier.
+      </p>
+    </div>
+    <div className="toolbox">
+      <p className="eyebrow">MY EVERYDAY TOOLBOX</p>
+      <div className="toolbox-list">
+        {skills.map((skill) => <Badge key={skill}>{skill}</Badge>)}
       </div>
-    </section>
-  );
-};
+      <p className="toolbox-note">And always learning what&apos;s next.</p>
+    </div>
+  </section>
+);
 
 export default AboutSection;
