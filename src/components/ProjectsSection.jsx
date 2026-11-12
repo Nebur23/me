@@ -1,6 +1,9 @@
 import { useState } from "react";
+import { Link } from "react-router";
 import MCP from "../assets/images/projects/mcp-server.png";
 import MentorGuru from "../assets/images/projects/mentorguru.png";
+import Yigil from "../assets/images/projects/yigil/Screenshot 2026-11-12 192733.png";
+import Galaxy from "../assets/images/projects/galaxy/g1.jpeg";
 import Allogaz from "../assets/images/projects/allogazcm.png";
 import Badge from "./ui/badge";
 import Button from "./ui/button";
@@ -14,7 +17,8 @@ const projects = [
     tech: ["TypeScript", "MCP", "Express"],
     description:
       "A database bridge that lets AI assistants explore and work with SQL data through the Model Context Protocol.",
-    link: "https://github.com/Nebur23/MCP-Sql",
+    link: "/projets/mcp-sql-server",
+    github: "https://github.com/Nebur23/MCP-Sql",
   },
   {
     title: "Mentor Guru",
@@ -24,7 +28,30 @@ const projects = [
     tech: ["React Native", "Appwrite", "Education"],
     description:
       "A learning companion connecting Cameroon GCE students with mentors, study resources, and a stronger support network.",
-    link: "https://play.google.com/store/apps/details?id=com.jpteks.mentorguru&pcampaignid=web_share",
+    link: "/projets/mentor-guru",
+    github: "https://github.com/Nebur23/mentor-guru-mapp",
+  },
+  {
+    title: "Yigil",
+    category: "Web",
+    image: Yigil,
+    alt: "Yigil e-learning homepage for GCE students",
+    tech: ["React Router", "NestJS", "Supabase"],
+    description:
+      "A web-based GCE learning platform with course videos and learning resources, accessible from any browser.",
+    link: "/projets/yigil",
+    github: "https://github.com/Nebur23/mystudies",
+  },
+  {
+    title: "AI Assistant Prototypes",
+    category: "Developer tools",
+    image: Galaxy,
+    alt: "Kamer Flash WhatsApp assistant conversation",
+    tech: ["M-Files VAF / UIX", "Node.js", "Gemini & Grok"],
+    description:
+      "Internal AI prototypes for M-Files document assistance and Kamer Flash WhatsApp support.",
+    link: "/projets/assistants-ia",
+    internal: true,
   },
   {
     title: "AlloGaz CM",
@@ -81,35 +108,65 @@ const ProjectsSection = () => {
       <div className="project-grid">
         {visibleProjects.map((project, index) => (
           <article className="project-card" key={project.title}>
-            <a
-              className="project-image-link"
-              href={project.link}
-              target="_blank"
-              rel="noreferrer"
-              aria-label={`View ${project.title}`}
-            >
-              <img
-                className="project-image"
-                src={project.image}
-                alt={project.alt}
-                loading="lazy"
-              />
-              <span className="image-link-icon" aria-hidden="true">↗</span>
-            </a>
-            <div className="project-card-heading">
-              <div>
-                <p className="project-index">0{index + 1} / {project.category}</p>
-                <h3>{project.title}</h3>
-              </div>
+            {project.github || project.internal ? (
+              <Link
+                className="project-image-link"
+                to={project.link}
+                aria-label={`View ${project.title} project details`}
+              >
+                <img
+                  className="project-image"
+                  src={project.image}
+                  alt={project.alt}
+                  loading="lazy"
+                />
+                <span className="image-link-icon" aria-hidden="true">↗</span>
+              </Link>
+            ) : (
               <a
-                className="project-arrow"
+                className="project-image-link"
                 href={project.link}
                 target="_blank"
                 rel="noreferrer"
-                aria-label={`Open ${project.title} in a new tab`}
+                aria-label={`View ${project.title}`}
               >
-                ↗
+                <img
+                  className="project-image"
+                  src={project.image}
+                  alt={project.alt}
+                  loading="lazy"
+                />
+                <span className="image-link-icon" aria-hidden="true">↗</span>
               </a>
+            )}
+            <div className="project-card-heading">
+              <div>
+                <p className="project-index">0{index + 1} / {project.category}</p>
+                <h3>
+                  {project.github || project.internal ? (
+                    <Link to={project.link}>{project.title}</Link>
+                  ) : project.title}
+                </h3>
+              </div>
+              {project.github || project.internal ? (
+                <Link
+                  className="project-arrow"
+                  to={project.link}
+                  aria-label={`View ${project.title} project details`}
+                >
+                  ↗
+                </Link>
+              ) : (
+                <a
+                  className="project-arrow"
+                  href={project.link}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`Open ${project.title} in a new tab`}
+                >
+                  ↗
+                </a>
+              )}
             </div>
             <p className="project-description">{project.description}</p>
             <div className="project-tags">

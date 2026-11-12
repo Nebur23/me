@@ -1,8 +1,8 @@
 import Footer from "../../components/footer";
-import Hero from "../../components/hero";
 import Header from "../../components/header";
 import ProjectsSection from "../../components/ProjectsSection";
 import AboutSection from "../../components/about";
+import Hero from "../../components/hero";
 
 const HomePage = () => {
   return (

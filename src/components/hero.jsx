@@ -1,29 +1,24 @@
-import portrait from "../assets/images/hero-dev.png";
-import Button from "./ui/button";
+import { Link } from "react-router";
 
 const Hero = () => (
-  <section className="hero-section" id="home">
-    <div className="portrait-frame">
-      <div className="portrait-orbit" aria-hidden="true" />
-      <div className="portrait-image-mask">
-        <img className="hero-portrait" src={portrait} alt="Portrait of Neb" />
+  <section className="hero-section page-width" id="home">
+    <div className="hero-geometry" aria-hidden="true" />
+    <div className="hero-content">
+      <p className="hero-greeting">Hello, I&apos;m</p>
+      <h1>Neb</h1>
+      <p className="hero-role">Software Engineer &amp; Builder</p>
+      <p className="hero-description">
+        I build thoughtful web products, developer tools, and practical AI
+        experiences in Cameroon.
+      </p>
+      <div className="hero-actions">
+        <Link className="hero-work-link" to="#projects">
+          Explore selected work <span aria-hidden="true">↓</span>
+        </Link>
+        <a className="hero-contact-link" href="mailto:rubenloic8@gmail.com">
+          Get in touch <span aria-hidden="true">↗</span>
+        </a>
       </div>
-      <span className="portrait-caption">ENGINEER · CAMEROON</span>
-    </div>
-
-    <p className="eyebrow"><span className="status-dot" /> Open to meaningful projects</p>
-    <h1>
-      I build things
-      <br />
-      for the <span>real world.</span>
-    </h1>
-    <p className="hero-description">
-      Hey, I&apos;m Neb — a software engineer making thoughtful web products,
-      developer tools, and practical AI experiences.
-    </p>
-    <div className="hero-actions">
-      <Button href="#projects" variant="default">Explore my work <span aria-hidden="true">↓</span></Button>
-      <a className="text-link" href="mailto:rubenloic8@gmail.com">Get in touch <span aria-hidden="true">↗</span></a>
     </div>
   </section>
 );
