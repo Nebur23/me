@@ -4,6 +4,8 @@ import Header from "../../components/header";
 import Badge from "../../components/ui/badge";
 import Button from "../../components/ui/button";
 import yigilHome from "../images/projects/yigil/Screenshot 2026-11-12 192733.png";
+import coursefull from "../images/projects/yigil/course-full.png";
+import coursemini from "../images/projects/yigil/course-mini.png";
 
 const stack = [
   "React Router v7 (SSR)",
@@ -13,6 +15,96 @@ const stack = [
   "GitHub Actions",
   "Render",
 ];
+
+const workflowLines = [
+  "name: Build and Push to Docker Hub",
+  "",
+  "on:",
+  "  push:",
+  '    branches: [ "main" ]',
+  "",
+  "jobs:",
+  "  build-api:",
+  "    runs-on: ubuntu-latest",
+  "    steps:",
+  "      - name: Checkout code",
+  "        uses: actions/checkout@v4",
+  "",
+  "      - name: Log in to Docker Hub",
+  "        uses: docker/login-action@v3",
+  "        with:",
+  "          username: ${{ secrets.DOCKERHUB_USERNAME }}",
+  "          password: ${{ secrets.DOCKERHUB_TOKEN }}",
+  "",
+  "      - name: Extract metadata for API",
+  "        id: meta-api",
+  "        uses: docker/metadata-action@v5",
+  "        with:",
+  "          images: ${{ secrets.DOCKERHUB_USERNAME }}/my-api",
+  "",
+  "      - name: Build and push API container",
+  "        uses: docker/build-push-action@v5",
+  "        with:",
+  "          context: ./api",
+  "          file: ./api/Dockerfile",
+  "          push: true",
+  "          tags: ${{ steps.meta-api.outputs.tags }}",
+  "          labels: ${{ steps.meta-api.outputs.labels }}",
+  "",
+  "  build-client:",
+  "    runs-on: ubuntu-latest",
+  "    steps:",
+  "      - name: Checkout code",
+  "        uses: actions/checkout@v4",
+  "",
+  "      - name: Log in to Docker Hub",
+  "        uses: docker/login-action@v3",
+  "        with:",
+  "          username: ${{ secrets.DOCKERHUB_USERNAME }}",
+  "          password: ${{ secrets.DOCKERHUB_TOKEN }}",
+  "",
+  "      - name: Extract metadata for Client",
+  "        id: meta-client",
+  "        uses: docker/metadata-action@v5",
+  "        with:",
+  "          images: ${{ secrets.DOCKERHUB_USERNAME }}/my-client",
+  "",
+  "      - name: Build and push Client container",
+  "        uses: docker/build-push-action@v5",
+  "        with:",
+  "          context: ./client",
+  "          file: ./client/Dockerfile",
+  "          push: true",
+  "          tags: ${{ steps.meta-client.outputs.tags }}",
+  "          labels: ${{ steps.meta-client.outputs.labels }}",
+];
+
+const highlightYamlLine = (line) => {
+  const match = line.match(/^(\s*)(-\s+)?([\w-]+:)?(.*)$/);
+  const valueParts = match[4].split(/(\$\{\{.*?\}\}|"(?:[^"]*)"|'[^']*')/g);
+
+  return (
+    <>
+      {match[1]}
+      {match[2] && <span className="yaml-dash">{match[2]}</span>}
+      {match[3] && (
+        <>
+          <span className="yaml-key">{match[3].slice(0, -1)}</span>
+          <span className="yaml-punctuation">:</span>
+        </>
+      )}
+      {valueParts.map((part, index) => {
+        if (part.startsWith("${{")) {
+          return <span className="yaml-expression" key={index}>{part}</span>;
+        }
+        if (part.startsWith('"') || part.startsWith("'")) {
+          return <span className="yaml-string" key={index}>{part}</span>;
+        }
+        return part;
+      })}
+    </>
+  );
+};
 
 const YigilProjectPage = () => (
   <div className="portfolio-shell">
@@ -166,10 +258,15 @@ const YigilProjectPage = () => (
                 <figcaption>Yigil home page and course introduction</figcaption>
               </figure>
               <div className="project-gallery-placeholder">
-                <span>Course and practice screens</span>
-                <span className="gallery-placeholder-hint">
-                  Add more web interface screenshots here
-                </span>
+                <figure className="project-gallery-figure">
+                  <img
+                    className="project-gallery-image"
+                    src={coursemini}
+                    alt="Yigil home page promoting GCE courses and video learning"
+                    loading="lazy"
+                  />
+                  <figcaption>Yigil course preview</figcaption>
+                </figure>
               </div>
             </div>
           </section>
@@ -179,16 +276,21 @@ const YigilProjectPage = () => (
               <p className="eyebrow">CUSTOM VIDEO PLAYER</p>
               <h3>Immersive course playback</h3>
               <p>
-                A screenshot of the custom player controls without the native
-                YouTube interface will be added here.
+                screenshot of the custom player controls without the native
+                YouTube interface.
               </p>
             </div>
             <div className="project-gallery-grid">
               <div className="project-gallery-placeholder project-gallery-placeholder-full">
-                <span>Custom player screenshot</span>
-                <span className="gallery-placeholder-hint">
-                  Show play, timeline, speed, and volume controls
-                </span>
+                <figure className="project-gallery-figure">
+                  <img
+                    className="project-gallery-image"
+                    src={coursefull}
+                    alt="Yigil home page promoting GCE courses and video learning"
+                    loading="lazy"
+                  />
+                  <figcaption>Yigil course preview</figcaption>
+                </figure>
               </div>
             </div>
           </section>
@@ -200,11 +302,22 @@ const YigilProjectPage = () => (
               <p>GitHub Actions → Docker Hub → Render</p>
             </div>
             <div className="project-gallery-grid">
-              <div className="project-gallery-placeholder project-gallery-placeholder-full">
-                <span>GitHub Actions pipeline screenshot</span>
-                <span className="gallery-placeholder-hint">
-                  Add a capture of the Docker build and deployment workflow
-                </span>
+              <div className="project-workflow project-gallery-placeholder-full">
+                <div className="project-workflow-toolbar">
+                  <span className="project-workflow-indicator" aria-hidden="true" />
+                  <span>build-and-push.yml</span>
+                  <span className="project-workflow-language">YAML</span>
+                </div>
+                <pre aria-label="GitHub Actions build and push workflow">
+                  <code>
+                    {workflowLines.map((line, index) => (
+                      <span className="yaml-line" key={index}>
+                        <span className="yaml-line-number" aria-hidden="true">{index + 1}</span>
+                        <span>{highlightYamlLine(line) || " "}</span>
+                      </span>
+                    ))}
+                  </code>
+                </pre>
               </div>
             </div>
           </section>

@@ -833,6 +833,94 @@ p {
   grid-column: 1 / -1;
 }
 
+.project-workflow {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  color: #d7dbea;
+  background: #171a29;
+  text-align: left;
+}
+
+.project-workflow-toolbar {
+  display: flex;
+  min-height: 42px;
+  align-items: center;
+  gap: 10px;
+  padding: 0 15px;
+  border-bottom: 1px solid #303448;
+  color: #b9bbca;
+  font-family: "DM Sans", sans-serif;
+  font-size: 11px;
+}
+
+.project-workflow-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #7bcba1;
+  box-shadow: 0 0 10px rgb(123 203 161 / 45%);
+}
+
+.project-workflow-language {
+  margin-left: auto;
+  color: #858ca5;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.project-workflow pre {
+  max-height: 650px;
+  overflow: auto;
+  margin: 0;
+  padding: 16px 0;
+  color: #d7dbea;
+  font-family: Consolas, "SFMono-Regular", Menlo, monospace;
+  font-size: 11px;
+  line-height: 1.75;
+  tab-size: 2;
+}
+
+.project-workflow code {
+  display: block;
+  min-width: max-content;
+}
+
+.yaml-line {
+  display: block;
+  min-height: 19px;
+  padding-right: 20px;
+  white-space: pre;
+}
+
+.yaml-line-number {
+  display: inline-block;
+  width: 43px;
+  margin-right: 16px;
+  color: #646b83;
+  text-align: right;
+  user-select: none;
+}
+
+.yaml-dash,
+.yaml-punctuation {
+  color: #8d96b3;
+}
+
+.yaml-key {
+  color: #8bc7f2;
+}
+
+.yaml-string {
+  color: #a7dca0;
+}
+
+.yaml-expression {
+  color: #d7a8f4;
+}
+
 .gallery-placeholder-hint {
   color: var(--muted);
   font-family: "DM Sans", sans-serif;
